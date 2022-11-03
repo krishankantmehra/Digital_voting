@@ -1,15 +1,13 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { Navigate } from 'react-router-dom';
-import LoginPage from './LoginPage';
+import swal from 'sweetalert';
 import Voting from './Voting';
 
 class Confirmation extends Component {
     constructor(){
         super();
         this.state = {
-            redirect:false,
-            home:false
+            redirect:false
         }
     }
 
@@ -20,21 +18,20 @@ class Confirmation extends Component {
         this.props.users[user].voted = Number(candidate) 
         this.props.candidates[candidate].votes++;
 
+       
+        console.log(this.props.candidates)
         axios.post('/users',this.props.users)
         axios.post('/users/candidates',this.props.candidates)
         
-        this.setState({
-            home:true
-        })
+        
+        swal("Congratulation", "Your vote has been stored", "success").then(() => {window.location.reload()})
         
     }
     render() {
         if(this.state.redirect){
             return  <Voting users={this.props.users}/>
         }
-        if(this.state.home){
-            return <Navigate to='/'/>
-        }
+       
         return (
             <div className='text-center'>
                 <h1> You selected candidate </h1>

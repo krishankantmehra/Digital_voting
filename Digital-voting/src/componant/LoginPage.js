@@ -48,6 +48,10 @@ class LoginPage extends Component {
             error.innerText = "*Passwords sid not matched."
             return;
         }
+        if(password.length < 6){
+            error.innerText = "Password length should be atleast 6."
+            return;
+        }
         for(var i =0;i < this.props.users.length;i++){
             if(this.props.users[i].email === email){
                 error.innerText = "*Email Exists."
