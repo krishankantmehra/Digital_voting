@@ -1,0 +1,13 @@
+{
+    "name": "Digital Voting",
+    
+    "scripts": {
+        "install": "cd Backend && npm install && cd ../Digital-voting && npm install",
+        "server": "cd Backend && npm start",
+        "client": "cd Digital-voting && npm start",
+        "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "devDependencies": {
+        "concurrently": "^6.3.0"
+    }
+}
